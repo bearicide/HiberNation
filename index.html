@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MATTBEAR — HiberNation HQ</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#000;
+      --bg1:#070b14;
+      --ink:#e9f3ff;
+      --muted:rgba(233,243,255,.72);
+      --faint:rgba(233,243,255,.45);
+      --glass:rgba(255,255,255,.06);
+      --glass2:rgba(255,255,255,.09);
+      --edge:rgba(255,255,255,.14);
+      --glow:rgba(0,255,210,.22);
+      --glow2:rgba(0,255,210,.38);
+      --danger:rgba(255,90,90,.18);
+      --ok:rgba(0,255,210,.10);
+      --max:1020px;
+      --r:16px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 520px at 50% 8%, rgba(0,255,210,.12), transparent 60%),
+        radial-gradient(700px 420px at 18% 58%, rgba(120,160,255,.10), transparent 55%),
+        radial-gradient(900px 600px at 85% 70%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      display:flex;
+      justify-content:center;
+    }
+
+    a{ color:var(--ink); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .container{ width:min(var(--max), 100%); padding:18px 18px 72px; }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 14px;
+      border:1px solid var(--edge);
+      background:linear-gradient(180deg, var(--glass2), var(--glass));
+      border-radius:var(--r);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 34px rgba(0,0,0,.55);
+      position:sticky;
+      top:12px;
+      z-index:20;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      line-height:1.05;
+      min-width: 220px;
+    }
+    .brand .name{
+      font-family:'Playfair Display', serif;
+      letter-spacing:6px;
+      font-size:1.25rem;
+      margin:0;
+      white-space:nowrap;
+    }
+    .brand .tag{
+      font-size:.78rem;
+      opacity:.7;
+      letter-spacing:2px;
+      margin-top:6px;
+      white-space:nowrap;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--edge);
+      background:rgba(255,255,255,.04);
+      font-size:.82rem;
+      letter-spacing:1px;
+      opacity:.95;
+      white-space:nowrap;
+    }
+    .pill:hover{
+      background:rgba(255,255,255,.07);
+      box-shadow:0 0 24px var(--glow);
+      text-decoration:none;
+    }
+
+    .hero{
+      margin-top:26px;
+      padding:28px 18px;
+      border-radius:calc(var(--r) + 6px);
+      border:1px solid var(--edge);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: 0 0 46px rgba(0,0,0,.65);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero h1{
+      font-family:'Playfair Display', serif;
+      font-size:3rem;
+      letter-spacing:10px;
+      margin:0;
+    }
+    .hero .sub{
+      margin-top:10px;
+      color:var(--muted);
+      letter-spacing:2px;
+      font-size:.95rem;
+      line-height:1.6;
+    }
+    .mantra{
+      margin-top:14px;
+      letter-spacing:3px;
+      font-size:1.06rem;
+      opacity:.95;
+    }
+
+    .burns{
+      margin:18px auto 0;
+      width: min(340px, 90%);
+      border-radius: 14px;
+      border: 1px solid var(--edge);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 0 28px rgba(0,255,210,.14);
+      padding: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .burns img{
+      width: 180px;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .burns .cap{
+      color: var(--muted);
+      font-size: .82rem;
+      letter-spacing: 1px;
+      line-height: 1.45;
+      max-width: 120px;
+    }
+
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    @media (min-width: 920px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+      .hero{ padding:34px 26px; }
+    }
+
+    .card{
+      padding:18px 16px;
+      border-radius:var(--r);
+      border:1px solid var(--edge);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      box-shadow: 0 0 34px rgba(0,0,0,.55);
+    }
+    .card h2{
+      margin:0;
+      font-size:1.05rem;
+      letter-spacing:3px;
+    }
+    .card p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:.92rem;
+    }
+    .meta{
+      margin-top:10px;
+      color:var(--faint);
+      font-size:.8rem;
+      letter-spacing:1px;
+      line-height:1.5;
+    }
+
+    .links{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    @media (min-width: 700px){
+      .links{ grid-template-columns: 1fr 1fr; }
+    }
+    .linkCard{
+      padding:14px 14px;
+      border-radius:var(--r);
+      border:1px solid var(--edge);
+      background:rgba(255,255,255,.04);
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .linkCard .label{
+      letter-spacing:2px;
+      font-size:.82rem;
+      opacity:.85;
+    }
+    .linkCard .url{
+      font-size:.9rem;
+      color:var(--muted);
+      word-break:break-word;
+    }
+    .linkCard:hover{
+      background:rgba(255,255,255,.07);
+      box-shadow:0 0 24px var(--glow);
+      text-decoration:none;
+    }
+
+    .sectionTitle{
+      margin-top:22px;
+      margin-bottom:10px;
+      text-align:left;
+      letter-spacing:4px;
+      opacity:.9;
+      font-size:.95rem;
+    }
+
+    .formGrid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    @media (min-width: 760px){
+      .formGrid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    label{
+      display:block;
+      font-size:.78rem;
+      letter-spacing:1px;
+      color:var(--faint);
+      margin-bottom:6px;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.28);
+      color:var(--ink);
+      font-family:inherit;
+      outline:none;
+    }
+    textarea{ min-height: 90px; resize:vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(233,243,255,.38); }
+
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--edge);
+      background:rgba(255,255,255,.05);
+      color:var(--ink);
+      letter-spacing:1px;
+      font-size:.86rem;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{
+      background:rgba(255,255,255,.08);
+      box-shadow:0 0 22px var(--glow);
+    }
+    .btn.primary{
+      background: var(--ok);
+      border-color: rgba(0,255,210,.35);
+    }
+    .btn.danger{
+      background: var(--danger);
+      border-color: rgba(255,90,90,.35);
+    }
+
+    .tableWrap{
+      margin-top:14px;
+      overflow:auto;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 760px;
+    }
+    th, td{
+      padding:12px 10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      text-align:left;
+      vertical-align:top;
+      font-size:.86rem;
+      color: var(--muted);
+    }
+    th{
+      color: var(--ink);
+      letter-spacing:1px;
+      font-size:.78rem;
+      opacity:.9;
+      background: rgba(255,255,255,.04);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    td strong{ color: var(--ink); }
+    .badge{
+      display:inline-block;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      font-size:.72rem;
+      letter-spacing:1px;
+      opacity:.9;
+    }
+    .badge.awake{ box-shadow: 0 0 16px rgba(0,255,210,.14); }
+    .badge.sleeping{ opacity:.65; }
+    .small{
+      font-size:.78rem;
+      color: var(--faint);
+      line-height:1.45;
+    }
+
+    .footer{
+      margin-top:34px;
+      text-align:center;
+      color:var(--faint);
+      font-size:.8rem;
+      letter-spacing:1px;
+      line-height:1.6;
+    }
+
+    .toast{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.55);
+      color: var(--ink);
+      box-shadow: 0 0 24px rgba(0,0,0,.55);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .18s ease, transform .18s ease;
+      max-width: 320px;
+      z-index: 999;
+      pointer-events: none;
+      font-size: .86rem;
+      letter-spacing: .5px;
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="topbar">
+      <div class="brand">
+        <div class="name">MATTBEAR</div>
+        <div class="tag">HIBERNATION HQ • SIGNAL LIVE</div>
+      </div>
+
+      <div class="nav">
+        <a class="pill" href="#hibernation">HIBERNATION</a>
+        <a class="pill" href="#listen">LISTEN</a>
+        <a class="pill" href="#book">ADDRESS BOOK</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <h1>MATTBEAR</h1>
+      <div class="sub">
+        Official hub for transmissions, projects, and the people who heard the signal and didn’t go back to sleep.
+      </div>
+      <div class="mantra">Wake Up. Stay Up. HiberNation.</div>
+
+      <!-- Mr. Burns "Excellent" GIF -->
+      <div class="burns" title="Excellent.">
+        <img
+          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWZhdW00Nmo3ZzVheDdpaGpsa2EwMTNoNnFwdTEydm1mY2xpYnQyZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/8fen5LSZcHQ5O/200w.gif"
+          alt="Mr. Burns: Excellent"
+          loading="lazy"
+        />
+        <div class="cap">
+          Mr. Burns approves.<br>
+          Your paranoia is validated.
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <section class="card" id="hibernation">
+        <h2>HIBERNATION</h2>
+        <p>
+          HiberNation is the group moniker for fans of and future awakened sleepers.<br>
+          Not followers. Not spectators. Awake participants.
+        </p>
+        <div class="meta">
+          Use: community name • mantra • membership test: you stayed up.
+        </div>
+      </section>
+
+      <section class="card" id="listen">
+        <h2>LISTEN</h2>
+        <p>
+          The signal has multiple entry points. Pick one. Don’t overthink it. Humans love doing that.
+        </p>
+
+        <div class="links">
+          <a class="linkCard" href="https://suno.com/@mattbear86" target="_blank" rel="noopener">
+            <div class="label">SUNO</div>
+            <div class="url">https://suno.com/@mattbear86</div>
+          </a>
+
+          <a class="linkCard" href="https://soundcloud.com/mattbear" target="_blank" rel="noopener">
+            <div class="label">SOUNDCLOUD</div>
+            <div class="url">https://soundcloud.com/mattbear</div>
+          </a>
+
+          <a class="linkCard" href="https://bearicide.github.io/mattbear-allfalldown" target="_blank" rel="noopener">
+            <div class="label">ALL FALL DOWN</div>
+            <div class="url">https://bearicide.github.io/mattbear-allfalldown</div>
+          </a>
+
+          <a class="linkCard" href="#book">
+            <div class="label">ADDRESS BOOK</div>
+            <div class="url">Local-only tracker (no humans harmed)</div>
+          </a>
+        </div>
+
+        <div class="meta">
+          Notes: Address book data stays in your browser (LocalStorage). Export JSON if you want portability.
+        </div>
+      </section>
+
+    </div>
+
+    <div class="sectionTitle" id="book">ADDRESS BOOK + TRACKER</div>
+
+    <section class="card">
+      <h2>ADD / UPDATE CONTACT</h2>
+      <p class="small">
+        Local-only. No server. No account. No “we value your privacy” lie.
+        Everything lives in your browser until you export or clear it.
+      </p>
+
+      <div class="formGrid">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" placeholder="e.g., Aja / Mike / Jody / Random Sleeper" />
+        </div>
+
+        <div>
+          <label for="handle">Handle / Tag</label>
+          <input id="handle" placeholder="e.g., @username / phone / email / discord" />
+        </div>
+
+        <div>
+          <label for="platform">Platform</label>
+          <select id="platform">
+            <option value="in-person">in-person</option>
+            <option value="text">text</option>
+            <option value="email">email</option>
+            <option value="instagram">instagram</option>
+            <option value="facebook">facebook</option>
+            <option value="soundcloud">soundcloud</option>
+            <option value="suno">suno</option>
+            <option value="discord">discord</option>
+            <option value="other" selected>other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="status">Status</label>
+          <select id="status">
+            <option value="awake" selected>awake</option>
+            <option value="sleeping">sleeping</option>
+            <option value="unknown">unknown</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="trust">Trust Level</label>
+          <select id="trust">
+            <option value="1">1 — human</option>
+            <option value="2">2 — mostly human</option>
+            <option value="3" selected>3 — tolerable</option>
+            <option value="4">4 — reliable</option>
+            <option value="5">5 — rare specimen</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="lastContacted">Last Contacted</label>
+          <input id="lastContacted" type="date" />
+        </div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <label for="notes">Notes</label>
+        <textarea id="notes" placeholder="What they like, what they hate, what they said, why you trust them (or don’t)."></textarea>
+      </div>
+
+      <div class="row">
+        <button class="btn primary" id="saveContact">SAVE CONTACT</button>
+        <button class="btn" id="clearForm">CLEAR FORM</button>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>LOG INTERACTION</h2>
+      <p class="small">Tracks “last touched base,” receipts, outcomes. Because memory is a trait humans pretend to have.</p>
+
+      <div class="formGrid">
+        <div>
+          <label for="pickContact">Contact</label>
+          <select id="pickContact"></select>
+        </div>
+
+        <div>
+          <label for="interactionType">Type</label>
+          <select id="interactionType">
+            <option value="call">call</option>
+            <option value="text">text</option>
+            <option value="email">email</option>
+            <option value="dm">dm</option>
+            <option value="in-person">in-person</option>
+            <option value="other" selected>other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="interactionDate">Date</label>
+          <input id="interactionDate" type="date" />
+        </div>
+
+        <div>
+          <label for="interactionOutcome">Outcome</label>
+          <select id="interactionOutcome">
+            <option value="good" selected>good</option>
+            <option value="neutral">neutral</option>
+            <option value="bad">bad</option>
+            <option value="pending">pending</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:10px;">
+        <label for="interactionNote">Interaction Note</label>
+        <textarea id="interactionNote" placeholder="What happened. What you learned. What you’re doing next."></textarea>
+      </div>
+
+      <div class="row">
+        <button class="btn primary" id="logInteraction">LOG INTERACTION</button>
+        <button class="btn danger" id="wipeInteractions">WIPE INTERACTIONS (LOCAL)</button>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>CONTACTS + TRACKER VIEW</h2>
+
+      <div class="formGrid">
+        <div>
+          <label for="search">Search</label>
+          <input id="search" placeholder="Search name / handle / notes" />
+        </div>
+
+        <div>
+          <label for="filterStatus">Filter Status</label>
+          <select id="filterStatus">
+            <option value="all" selected>all</option>
+            <option value="awake">awake</option>
+            <option value="sleeping">sleeping</option>
+            <option value="unknown">unknown</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="sortBy">Sort</label>
+          <select id="sortBy">
+            <option value="name" selected>name</option>
+            <option value="lastContacted">last contacted</option>
+            <option value="trust">trust level</option>
+          </select>
+        </div>
+
+        <div>
+          <label>&nbsp;</label>
+          <div class="row" style="margin-top:0;">
+            <button class="btn" id="exportJson">EXPORT JSON</button>
+            <button class="btn" id="openImport">IMPORT JSON</button>
+            <button class="btn danger" id="wipeAll">WIPE ALL (LOCAL)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tableWrap" style="margin-top:12px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Contact</th>
+              <th>Platform</th>
+              <th>Status</th>
+              <th>Trust</th>
+              <th>Last Contacted</th>
+              <th>Notes</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="contactsTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="tableWrap" style="margin-top:14px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Contact</th>
+              <th>Type</th>
+              <th>Outcome</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="interactionsTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="meta">
+        Export saves a JSON file you can stash anywhere. Import restores it. This is the opposite of trusting humans: it’s trusting files.
+      </div>
+    </section>
+
+    <div class="footer">
+      MATTBEAR • HiberNation HQ<br>
+      Wake Up. Stay Up. HiberNation.
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  const STORAGE_KEY = "mattbear_hibernation_contacts_v1";
+  const STORAGE_INTERACTIONS = "mattbear_hibernation_interactions_v1";
+
+  const el = (id) => document.getElementById(id);
+
+  const toast = (msg) => {
+    const t = el("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 1800);
+  };
+
+  const todayISO = () => {
+    const d = new Date();
+    const pad = (n) => String(n).padStart(2, "0");
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  };
+
+  const safeParse = (str, fallback) => {
+    try { return JSON.parse(str); } catch { return fallback; }
+  };
+
+  const loadContacts = () => safeParse(localStorage.getItem(STORAGE_KEY), []);
+  const saveContacts = (arr) => localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+
+  const loadInteractions = () => safeParse(localStorage.getItem(STORAGE_INTERACTIONS), []);
+  const saveInteractions = (arr) => localStorage.setItem(STORAGE_INTERACTIONS, JSON.stringify(arr));
+
+  const uid = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
+
+  const state = {
+    editId: null
+  };
+
+  const resetForm = () => {
+    state.editId = null;
+    el("name").value = "";
+    el("handle").value = "";
+    el("platform").value = "other";
+    el("status").value = "awake";
+    el("trust").value = "3";
+    el("lastContacted").value = "";
+    el("notes").value = "";
+    toast("Form cleared.");
+  };
+
+  const upsertContact = () => {
+    const name = el("name").value.trim();
+    const handle = el("handle").value.trim();
+    const platform = el("platform").value;
+    const status = el("status").value;
+    const trust = Number(el("trust").value);
+    const lastContacted = el("lastContacted").value || "";
+    const notes = el("notes").value.trim();
+
+    if (!name) {
+      toast("Name required. Humans still need labels.");
+      return;
+    }
+
+    const contacts = loadContacts();
+
+    if (state.editId) {
+      const idx = contacts.findIndex(c => c.id === state.editId);
+      if (idx >= 0) {
+        contacts[idx] = { ...contacts[idx], name, handle, platform, status, trust, lastContacted, notes, updatedAt: Date.now() };
+      }
+      toast("Contact updated.");
+    } else {
+      contacts.push({
+        id: uid(),
+        name,
+        handle,
+        platform,
+        status,
+        trust,
+        lastContacted,
+        notes,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      });
+      toast("Contact saved.");
+    }
+
+    saveContacts(contacts);
+    renderAll();
+    resetFormQuiet();
+  };
+
+  const resetFormQuiet = () => {
+    state.editId = null;
+    el("name").value = "";
+    el("handle").value = "";
+    el("platform").value = "other";
+    el("status").value = "awake";
+    el("trust").value = "3";
+    el("lastContacted").value = "";
+    el("notes").value = "";
+  };
+
+  const deleteContact = (id) => {
+    const contacts = loadContacts().filter(c => c.id !== id);
+    saveContacts(contacts);
+
+    const interactions = loadInteractions().filter(x => x.contactId !== id);
+    saveInteractions(interactions);
+
+    toast("Contact deleted (and their history, because drama is optional).");
+    renderAll();
+  };
+
+  const editContact = (id) => {
+    const c = loadContacts().find(x => x.id === id);
+    if (!c) return;
+    state.editId = id;
+    el("name").value = c.name || "";
+    el("handle").value = c.handle || "";
+    el("platform").value = c.platform || "other";
+    el("status").value = c.status || "unknown";
+    el("trust").value = String(c.trust || 3);
+    el("lastContacted").value = c.lastContacted || "";
+    el("notes").value = c.notes || "";
+    toast("Editing contact.");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const logInteraction = () => {
+    const contactId = el("pickContact").value;
+    const type = el("interactionType").value;
+    const date = el("interactionDate").value || todayISO();
+    const outcome = el("interactionOutcome").value;
+    const note = el("interactionNote").value.trim();
+
+    if (!contactId) {
+      toast("Pick a contact first.");
+      return;
+    }
+
+    const interactions = loadInteractions();
+    interactions.unshift({
+      id: uid(),
+      contactId,
+      type,
+      date,
+      outcome,
+      note,
+      createdAt: Date.now()
+    });
+
+    // Update contact lastContacted automatically
+    const contacts = loadContacts();
+    const idx = contacts.findIndex(c => c.id === contactId);
+    if (idx >= 0) {
+      contacts[idx].lastContacted = date;
+      contacts[idx].updatedAt = Date.now();
+      saveContacts(contacts);
+    }
+
+    saveInteractions(interactions);
+    el("interactionNote").value = "";
+    el("interactionDate").value = "";
+    toast("Interaction logged.");
+    renderAll();
+  };
+
+  const wipeInteractions = () => {
+    localStorage.removeItem(STORAGE_INTERACTIONS);
+    toast("Interactions wiped locally.");
+    renderAll();
+  };
+
+  const wipeAll = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_INTERACTIONS);
+    toast("All local data wiped.");
+    renderAll();
+  };
+
+  const exportJson = () => {
+    const payload = {
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      contacts: loadContacts(),
+      interactions: loadInteractions()
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "mattbear-hibernation-addressbook.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 5000);
+    toast("Exported JSON.");
+  };
+
+  const openImport = () => {
+    const raw = prompt("Paste exported JSON here:");
+    if (!raw) return;
+
+    const parsed = safeParse(raw, null);
+    if (!parsed || !parsed.contacts || !parsed.interactions) {
+      toast("Import failed. That JSON is not the right flavor.");
+      return;
+    }
+
+    saveContacts(Array.isArray(parsed.contacts) ? parsed.contacts : []);
+    saveInteractions(Array.isArray(parsed.interactions) ? parsed.interactions : []);
+    toast("Imported JSON.");
+    renderAll();
+  };
+
+  const renderPickContact = (contacts) => {
+    const sel = el("pickContact");
+    const current = sel.value;
+    sel.innerHTML = "";
+
+    const opt0 = document.createElement("option");
+    opt0.value = "";
+    opt0.textContent = "Select contact...";
+    sel.appendChild(opt0);
+
+    contacts
+      .slice()
+      .sort((a,b) => (a.name||"").localeCompare(b.name||""))
+      .forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.id;
+        opt.textContent = c.name + (c.handle ? ` (${c.handle})` : "");
+        sel.appendChild(opt);
+      });
+
+    if (current) sel.value = current;
+  };
+
+  const badgeClass = (status) => {
+    if (status === "awake") return "badge awake";
+    if (status === "sleeping") return "badge sleeping";
+    return "badge";
+  };
+
+  const renderContactsTable = (contacts) => {
+    const tbody = el("contactsTbody");
+    tbody.innerHTML = "";
+
+    const search = (el("search").value || "").toLowerCase();
+    const filterStatus = el("filterStatus").value;
+    const sortBy = el("sortBy").value;
+
+    let view = contacts.slice();
+
+    if (filterStatus !== "all") {
+      view = view.filter(c => (c.status || "unknown") === filterStatus);
+    }
+
+    if (search) {
+      view = view.filter(c => {
+        const blob = `${c.name||""} ${c.handle||""} ${c.notes||""} ${c.platform||""}`.toLowerCase();
+        return blob.includes(search);
+      });
+    }
+
+    const sorters = {
+      name: (a,b) => (a.name||"").localeCompare(b.name||""),
+      lastContacted: (a,b) => (b.lastContacted||"").localeCompare(a.lastContacted||""),
+      trust: (a,b) => (b.trust||0) - (a.trust||0)
+    };
+    view.sort(sorters[sortBy] || sorters.name);
+
+    if (view.length === 0) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.colSpan = 7;
+      td.style.padding = "16px 10px";
+      td.innerHTML = `<span class="small">No contacts match. Either you haven't added any, or everyone is hiding (reasonable).</span>`;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+      return;
+    }
+
+    view.forEach(c => {
+      const tr = document.createElement("tr");
+
+      const td1 = document.createElement("td");
+      td1.innerHTML = `<strong>${escapeHtml(c.name || "")}</strong><div class="small">${escapeHtml(c.handle || "")}</div>`;
+      tr.appendChild(td1);
+
+      const td2 = document.createElement("td");
+      td2.textContent = c.platform || "other";
+      tr.appendChild(td2);
+
+      const td3 = document.createElement("td");
+      td3.innerHTML = `<span class="${badgeClass(c.status)}">${escapeHtml(c.status || "unknown")}</span>`;
+      tr.appendChild(td3);
+
+      const td4 = document.createElement("td");
+      td4.textContent = String(c.trust ?? 3);
+      tr.appendChild(td4);
+
+      const td5 = document.createElement("td");
+      td5.textContent = c.lastContacted || "";
+      tr.appendChild(td5);
+
+      const td6 = document.createElement("td");
+      td6.innerHTML = `<span class="small">${escapeHtml((c.notes || "").slice(0, 180))}${(c.notes||"").length>180 ? "…" : ""}</span>`;
+      tr.appendChild(td6);
+
+      const td7 = document.createElement("td");
+      td7.innerHTML = `
+        <div class="row" style="margin:0;">
+          <button class="btn" data-edit="${c.id}">EDIT</button>
+          <button class="btn danger" data-del="${c.id}">DELETE</button>
+        </div>
+      `;
+      tr.appendChild(td7);
+
+      tbody.appendChild(tr);
+    });
+
+    // Wire actions
+    tbody.querySelectorAll("button[data-edit]").forEach(b => {
+      b.addEventListener("click", () => editContact(b.getAttribute("data-edit")));
+    });
+    tbody.querySelectorAll("button[data-del]").forEach(b => {
+      b.addEventListener("click", () => deleteContact(b.getAttribute("data-del")));
+    });
+  };
+
+  const renderInteractionsTable = (contacts, interactions) => {
+    const tbody = el("interactionsTbody");
+    tbody.innerHTML = "";
+
+    const byId = new Map(contacts.map(c => [c.id, c]));
+    const view = interactions.slice(0, 200); // keep it sane
+
+    if (view.length === 0) {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.colSpan = 5;
+      td.style.padding = "16px 10px";
+      td.innerHTML = `<span class="small">No interactions logged. The humans remain unobserved.</span>`;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+      return;
+    }
+
+    view.forEach(x => {
+      const c = byId.get(x.contactId);
+      const tr = document.createElement("tr");
+
+      const td1 = document.createElement("td");
+      td1.textContent = x.date || "";
+      tr.appendChild(td1);
+
+      const td2 = document.createElement("td");
+      td2.innerHTML = `<strong>${escapeHtml(c ? c.name : "Unknown")}</strong>`;
+      tr.appendChild(td2);
+
+      const td3 = document.createElement("td");
+      td3.textContent = x.type || "";
+      tr.appendChild(td3);
+
+      const td4 = document.createElement("td");
+      td4.textContent = x.outcome || "";
+      tr.appendChild(td4);
+
+      const td5 = document.createElement("td");
+      td5.innerHTML = `<span class="small">${escapeHtml((x.note||"").slice(0, 200))}${(x.note||"").length>200 ? "…" : ""}</span>`;
+      tr.appendChild(td5);
+
+      tbody.appendChild(tr);
+    });
+  };
+
+  const escapeHtml = (s) => String(s)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+  const renderAll = () => {
+    const contacts = loadContacts();
+    const interactions = loadInteractions();
+
+    renderPickContact(contacts);
+    renderContactsTable(contacts);
+    renderInteractionsTable(contacts, interactions);
+  };
+
+  // Initial defaults
+  el("interactionDate").value = "";
+  renderAll();
+
+  // Events
+  el("saveContact").addEventListener("click", upsertContact);
+  el("clearForm").addEventListener("click", resetForm);
+
+  el("logInteraction").addEventListener("click", logInteraction);
+  el("wipeInteractions").addEventListener("click", wipeInteractions);
+
+  el("exportJson").addEventListener("click", exportJson);
+  el("openImport").addEventListener("click", openImport);
+  el("wipeAll").addEventListener("click", wipeAll);
+
+  el("search").addEventListener("input", renderAll);
+  el("filterStatus").addEventListener("change", renderAll);
+  el("sortBy").addEventListener("change", renderAll);
+
+})();
+</script>
+</body>
+</html>
