@@ -1,270 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MATTBEAR — HiberNation</title>
 
-<title>MATTBEAR — HiberNation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@300;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg0:#05070c;
+      --bg1:#000;
+      --ink:#eaf3ff;
+      --muted:rgba(234,243,255,.70);
+      --faint:rgba(234,243,255,.45);
+      --card:rgba(255,255,255,.06);
+      --edge:rgba(255,255,255,.16);
+      --glow:rgba(0,255,210,.22);
+      --glow2:rgba(0,255,210,.35);
+      --r:18px;
+      --max:980px;
+    }
 
-<style>
-body {
-  margin: 0;
-  background:
-    radial-gradient(circle at center, #081018 0%, #000 70%),
-    linear-gradient(180deg, #000, #02040a);
-  color: #e8f3ff;
-  font-family: 'Orbitron', sans-serif;
-  display: flex;
-  justify-content: center;
-}
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
 
-.container {
-  max-width: 920px;
-  padding: 40px 20px 80px;
-  text-align: center;
-}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family:'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 520px at 50% 10%, rgba(0,255,210,.12), transparent 60%),
+        radial-gradient(700px 420px at 20% 60%, rgba(120,160,255,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      display:flex;
+      justify-content:center;
+    }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  letter-spacing: 10px;
-  margin: 0;
-}
+    a{ color:var(--ink); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
 
-.mantra {
-  margin-top: 14px;
-  letter-spacing: 3px;
-  opacity: 0.9;
-}
+    .wrap{
+      width:100%;
+      max-width:var(--max);
+      padding:18px 16px 80px;
+      text-align:center;
+    }
 
-.card {
-  margin-top: 36px;
-  padding: 24px 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.05);
-  box-shadow: 0 0 40px rgba(0,255,210,0.18);
-}
+    .card{
+      margin-top:16px;
+      padding:18px 16px;
+      border-radius:var(--r);
+      border:1px solid var(--edge);
+      background:linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
+      box-shadow: 0 0 42px rgba(0,0,0,.55);
+    }
 
-.card h2 {
-  margin: 0 0 12px;
-  letter-spacing: 4px;
-}
+    .heroImg{
+      width:100%;
+      border-radius:var(--r);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 0 60px rgba(0,255,210,.14);
+      display:block;
+    }
 
-.links a {
-  display: block;
-  margin: 10px 0;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.06);
-  color: #e8f3ff;
-  text-decoration: none;
-  letter-spacing: 2px;
-}
+    h1{
+      font-family:'Playfair Display', serif;
+      letter-spacing:10px;
+      font-size:2.7rem;
+      margin:18px 0 6px;
+    }
 
-.links a:hover {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 0 25px rgba(0,255,210,0.35);
-}
+    .mantra{
+      letter-spacing:3px;
+      color:var(--muted);
+      margin:0 0 8px;
+      font-size:1rem;
+      line-height:1.5;
+    }
 
-.burns img {
-  margin-top: 16px;
-  width: 180px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
+    .pillRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:12px;
+    }
 
-.small {
-  opacity: 0.7;
-  font-size: 0.85rem;
-}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid var(--edge);
+      background:rgba(255,255,255,.04);
+      letter-spacing:1px;
+      font-size:.86rem;
+      min-width:160px;
+    }
 
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(0,0,0,0.4);
-  color: #fff;
-  font-family: inherit;
-}
+    .pill:hover{
+      background:rgba(255,255,255,.07);
+      box-shadow:0 0 22px var(--glow);
+      text-decoration:none;
+    }
 
-textarea { resize: vertical; min-height: 80px; }
+    .sectionTitle{
+      margin:0 0 12px;
+      letter-spacing:4px;
+      font-size:1.05rem;
+    }
 
-button {
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(0,255,210,0.4);
-  background: rgba(0,255,210,0.12);
-  color: #fff;
-  letter-spacing: 2px;
-  cursor: pointer;
-}
+    .subtle{
+      color:var(--muted);
+      line-height:1.65;
+      margin:0;
+      font-size:.95rem;
+    }
 
-button:hover {
-  background: rgba(0,255,210,0.2);
-}
+    .burns{
+      margin-top:12px;
+      display:flex;
+      justify-content:center;
+    }
 
-table {
-  width: 100%;
-  margin-top: 16px;
-  border-collapse: collapse;
-}
+    .burns img{
+      width:170px;
+      max-width:70%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 0 24px rgba(0,0,0,.45);
+    }
 
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  text-align: left;
-}
+    .playerWrap{
+      margin-top:14px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.22);
+    }
 
-th { opacity: 0.8; }
+    iframe{
+      width:100%;
+      display:block;
+      border:0;
+    }
 
-.footer {
-  margin-top: 60px;
-  opacity: 0.5;
-  font-size: 0.8rem;
-}
-</style>
+    .formGrid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      text-align:left;
+    }
+
+    @media (min-width: 760px){
+      .formGrid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    label{
+      display:block;
+      font-size:.78rem;
+      letter-spacing:1px;
+      color:var(--faint);
+      margin-bottom:6px;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.28);
+      color:var(--ink);
+      font-family:inherit;
+      outline:none;
+    }
+
+    textarea{ min-height:92px; resize:vertical; }
+
+    .btnRow{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    button{
+      appearance:none;
+      border:1px solid rgba(0,255,210,.35);
+      background:rgba(0,255,210,.10);
+      color:var(--ink);
+      padding:12px 16px;
+      border-radius:12px;
+      font-family:inherit;
+      letter-spacing:1px;
+      cursor:pointer;
+      min-width:180px;
+    }
+
+    button:hover{
+      background:rgba(0,255,210,.16);
+      box-shadow:0 0 22px var(--glow);
+    }
+
+    .tableWrap{
+      margin-top:14px;
+      overflow:auto;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.22);
+      text-align:left;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:720px;
+    }
+
+    th, td{
+      padding:12px 10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      vertical-align:top;
+      font-size:.9rem;
+      color:var(--muted);
+    }
+
+    th{
+      color:var(--ink);
+      letter-spacing:1px;
+      font-size:.78rem;
+      opacity:.9;
+      background:rgba(255,255,255,.04);
+      position:sticky;
+      top:0;
+      z-index:1;
+    }
+
+    td strong{ color:var(--ink); }
+
+    .footer{
+      margin-top:18px;
+      color:var(--faint);
+      font-size:.82rem;
+      letter-spacing:1px;
+      line-height:1.6;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:16px;
+      transform:translateX(-50%) translateY(10px);
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.55);
+      color:var(--ink);
+      box-shadow:0 0 20px rgba(0,0,0,.55);
+      opacity:0;
+      transition:opacity .18s ease, transform .18s ease;
+      z-index:999;
+      pointer-events:none;
+      max-width:min(520px, 92vw);
+      font-size:.88rem;
+      letter-spacing:.5px;
+      text-align:center;
+    }
+
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <main class="wrap">
 
-  <h1>MATTBEAR</h1>
-  <div class="mantra">Wake Up. Stay Up. HiberNation.</div>
+    <!-- HERO IMAGE (place algorithm-nation.png in root) -->
+    <section class="card">
+      <img class="heroImg" src="algorithm-nation.png" alt="Algorithm Nation cover art">
+      <h1>MATTBEAR</h1>
+      <p class="mantra">Wake Up. Stay Up. HiberNation.</p>
 
-  <div class="burns">
-    <img src="https://media0.giphy.com/media/8fen5LSZcHQ5O/200w.gif" alt="Mr Burns Excellent">
-  </div>
+      <div class="pillRow">
+        <a class="pill" href="https://suno.com/@mattbear86" target="_blank" rel="noopener">SUNO</a>
+        <a class="pill" href="https://soundcloud.com/mattbear86" target="_blank" rel="noopener">SOUNDCLOUD</a>
+        <a class="pill" href="https://bearicide.github.io/mattbear-allfalldown" target="_blank" rel="noopener">ALL FALL DOWN</a>
+      </div>
 
-  <!-- LISTEN -->
-  <div class="card">
-    <h2>LISTEN</h2>
+      <div class="burns">
+        <img src="https://media0.giphy.com/media/8fen5LSZcHQ5O/200w.gif" alt="Excellent" loading="lazy">
+      </div>
+    </section>
 
-    <!-- SOUNDCloud PLAYER -->
-    <iframe
-      width="100%"
-      height="300"
-      scrolling="no"
-      frameborder="no"
-      allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mattbear86&color=%2300ffd2&auto_play=false&show_artwork=true">
-    </iframe>
+    <!-- PLAYER -->
+    <section class="card" id="listen">
+      <div class="sectionTitle">LISTEN</div>
 
-    <div class="links">
-      <a href="https://suno.com/@mattbear86" target="_blank">SUNO</a>
-      <a href="https://soundcloud.com/mattbear86" target="_blank">SOUNDCLOUD</a>
-      <a href="https://bearicide.github.io/mattbear86-allfalldown" target="_blank">ALL FALL DOWN</a>
+      <div class="playerWrap">
+        <iframe
+          height="320"
+          scrolling="no"
+          allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mattbear86&auto_play=false&show_artwork=true&visual=true">
+        </iframe>
+      </div>
+
+      <p class="subtle" style="margin-top:12px;">
+        </p>
+    </section>
+
+    <!-- ROSTER (PUBLIC, NICE FIELDS ONLY) -->
+    <section class="card" id="roster">
+      <div class="sectionTitle">HIBERNATION ROSTER</div>
+
+      <div class="formGrid">
+        <div>
+          <label for="r_name">Name</label>
+          <input id="r_name" placeholder="Display name" autocomplete="name" />
+        </div>
+
+        <div>
+          <label for="r_handle">Handle</label>
+          <input id="r_handle" placeholder="@handle / platform" autocomplete="off" />
+        </div>
+
+        <div>
+          <label for="r_trust">Trust Level</label>
+          <select id="r_trust">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="r_note">Message</label>
+          <input id="r_note" placeholder="Optional message" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="btnRow">
+        <button id="r_add" type="button">ADD</button>
+        <button id="r_export" type="button">EXPORT</button>
+        <button id="r_import" type="button">IMPORT</button>
+      </div>
+
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:22%;">Name</th>
+              <th style="width:22%;">Handle</th>
+              <th style="width:10%;">Trust</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody id="r_tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="footer">
+        Roster entries are stored locally in each visitor’s browser.
+      </div>
+    </section>
+
+    <div class="footer">
+      MATTBEAR • HiberNation
     </div>
-  </div>
 
-  <!-- ROSTER -->
-  <div class="card">
-    <h2>HIBERNATION ROSTER</h2>
-    <div class="small">Add yourself to the awakened sleepers.</div>
+  </main>
 
-    <input id="name" placeholder="Display name">
+  <div class="toast" id="toast"></div>
 
-    <input id="handle" placeholder="@handle / platform">
+  <script>
+    (() => {
+      const KEY = "hibernation_roster_public_v1";
 
-    <select id="trust">
-      <option value="1">1 — mysterious</option>
-      <option value="2">2 — quiet</option>
-      <option value="3" selected>3 — normal human</option>
-      <option value="4">4 — reliable</option>
-      <option value="5">5 — certified legend</option>
-    </select>
+      const $ = (id) => document.getElementById(id);
 
-    <textarea id="note" placeholder="Optional message"></textarea>
+      const toast = (msg) => {
+        const t = $("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(() => t.classList.remove("show"), 1600);
+      };
 
-    <button onclick="add()">ADD TO ROSTER</button>
-  </div>
+      const safeParse = (s, fallback) => {
+        try { return JSON.parse(s); } catch { return fallback; }
+      };
 
-  <div class="card">
-    <h2>AWAKENED SLEEPERS</h2>
+      const escapeHtml = (s) => String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
 
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Handle</th>
-          <th>Trust</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody id="list"></tbody>
-    </table>
-  </div>
+      const load = () => safeParse(localStorage.getItem(KEY), []);
+      const save = (arr) => localStorage.setItem(KEY, JSON.stringify(arr));
 
-  <div class="footer">
-    MATTBEAR • HiberNation HQ
-  </div>
+      const render = () => {
+        const data = load();
+        const tbody = $("r_tbody");
+        tbody.innerHTML = "";
 
-</div>
+        if (!data.length) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="4" style="padding:14px 10px; color: rgba(234,243,255,.55);">
+                No entries yet.
+              </td>
+            </tr>`;
+          return;
+        }
 
-<script>
-const KEY = "hibernation_roster";
+        data.forEach(r => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td><strong>${escapeHtml(r.name || "")}</strong></td>
+            <td>${escapeHtml(r.handle || "")}</td>
+            <td>${escapeHtml(r.trust || "")}</td>
+            <td>${escapeHtml(r.note || "")}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      };
 
-function load() {
-  return JSON.parse(localStorage.getItem(KEY) || "[]");
-}
+      const add = () => {
+        const name = $("r_name").value.trim();
+        if (!name) {
+          toast("Name is required.");
+          return;
+        }
 
-function save(data) {
-  localStorage.setItem(KEY, JSON.stringify(data));
-}
+        const entry = {
+          name,
+          handle: $("r_handle").value.trim(),
+          trust: $("r_trust").value,
+          note: $("r_note").value.trim(),
+          createdAt: Date.now()
+        };
 
-function render() {
-  const data = load();
-  const tbody = document.getElementById("list");
-  tbody.innerHTML = "";
+        const data = load();
+        data.unshift(entry);
+        save(data);
 
-  data.forEach(r => {
-    tbody.innerHTML += `
-      <tr>
-        <td><strong>${escape(r.name)}</strong></td>
-        <td>${escape(r.handle)}</td>
-        <td>${r.trust}</td>
-        <td>${escape(r.note)}</td>
-      </tr>`;
-  });
-}
+        $("r_name").value = "";
+        $("r_handle").value = "";
+        $("r_note").value = "";
 
-function add() {
-  const name = document.getElementById("name").value.trim();
-  if (!name) return;
+        render();
+        toast("Added.");
+      };
 
-  const entry = {
-    name,
-    handle: document.getElementById("handle").value,
-    trust: document.getElementById("trust").value,
-    note: document.getElementById("note").value
-  };
+      const exportJson = () => {
+        const payload = {
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          roster: load()
+        };
 
-  const data = load();
-  data.unshift(entry);
-  save(data);
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
 
-  document.getElementById("name").value = "";
-  document.getElementById("handle").value = "";
-  document.getElementById("note").value = "";
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "hibernation-roster.json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
 
-  render();
-}
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+        toast("Exported.");
+      };
 
-function escape(s) {
-  return String(s)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;");
-}
+      const importJson = async () => {
+        const raw = prompt("Paste roster JSON:");
+        if (!raw) return;
 
-render();
-</script>
+        const parsed = safeParse(raw, null);
+        if (!parsed || !Array.isArray(parsed.roster)) {
+          toast("Import failed.");
+          return;
+        }
 
+        save(parsed.roster);
+        render();
+        toast("Imported.");
+      };
+
+      $("r_add").addEventListener("click", add);
+      $("r_export").addEventListener("click", exportJson);
+      $("r_import").addEventListener("click", importJson);
+
+      render();
+    })();
+  </script>
 </body>
 </html>
