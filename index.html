@@ -99,6 +99,10 @@ iframe {
   border-radius: 12px;
 }
 
+.soundcloud-player {
+  min-height: 430px;
+}
+
 .burns img {
   width: 150px;
   margin-top: 14px;
@@ -134,12 +138,13 @@ iframe {
   <div class="card">
     <h2>LISTEN</h2>
 
-    <!-- SoundCloud player for mattbear86 -->
+    <!-- SoundCloud player for mattbear86: compact playlist-first view -->
     <iframe
-      height="320"
+      class="soundcloud-player"
+      height="430"
       scrolling="no"
       allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mattbear86&auto_play=false&show_artwork=true&visual=true">
+      src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mattbear86&auto_play=false&show_artwork=false&visual=false&show_comments=false">
     </iframe>
 
     <div class="links">
