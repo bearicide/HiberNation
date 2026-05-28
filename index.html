@@ -2,80 +2,59 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecting to MATTBEAR</title>
-<meta name="description" content="HiberNation now routes to the main MATTBEAR portal.">
-<meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://bearicide.github.io/">
-<meta http-equiv="refresh" content="0; url=https://bearicide.github.io/">
-<script>
-  window.location.replace('https://bearicide.github.io/');
-</script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MATTBEAR — ALL FALL DOWN</title>
 <style>
-  :root {
-    --bg: #05070c;
-    --text: #eef6ff;
-    --muted: #b7c7d8;
-    --line: rgba(255,255,255,.16);
-    --grad: linear-gradient(90deg,#ff3a6d,#ff9f1c,#ffd93d,#39ff92,#35d9ff,#5a7cff,#cf5cff);
-  }
-  * { box-sizing: border-box; }
-  body {
-    min-height: 100vh;
-    margin: 0;
-    display: grid;
-    place-items: center;
-    background: radial-gradient(circle at top left, rgba(53,217,255,.18), transparent 30%),
-                radial-gradient(circle at bottom right, rgba(207,92,255,.16), transparent 30%),
-                var(--bg);
-    color: var(--text);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    text-align: center;
-    padding: 24px;
-  }
-  main {
-    width: min(620px, 100%);
-    padding: 32px;
-    border: 1px solid var(--line);
-    border-radius: 28px;
-    background: rgba(255,255,255,.055);
-    box-shadow: 0 24px 70px rgba(0,0,0,.45);
-  }
-  h1 {
-    margin: 0 0 12px;
-    font-size: clamp(2rem, 8vw, 4rem);
-    line-height: .95;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  p { color: var(--muted); line-height: 1.6; }
-  a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 14px;
-    min-height: 48px;
-    padding: 12px 18px;
-    border-radius: 16px;
-    background: var(--grad);
-    color: #05070c;
-    font-weight: 900;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: .06em;
-  }
+body{margin:0;background:#070504;color:#f3eee6;font-family:Arial,sans-serif;overflow-x:hidden;background-image:radial-gradient(circle at top,#3a2d16,transparent 40%)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px}
+.logo{font-size:clamp(3rem,10vw,7rem);font-weight:900;letter-spacing:.12em;color:#e0bf7a;text-shadow:0 0 20px rgba(224,191,122,.3)}
+.sub{letter-spacing:.4em;color:#bba98d;text-transform:uppercase}
+.btn{margin-top:30px;padding:18px 32px;border-radius:999px;border:1px solid rgba(224,191,122,.3);background:#16110b;color:#fff;font-weight:700;text-decoration:none}
+.wrap{width:min(1300px,calc(100% - 30px));margin:auto;padding-bottom:100px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:rgba(0,0,0,.35);border:1px solid rgba(224,191,122,.2);border-radius:24px;padding:18px}
+iframe{width:100%;border:none;border-radius:16px;background:#000}
+.sc{height:520px}.suno{height:520px}
+.game{margin-top:40px;background:#050403;border:1px solid rgba(224,191,122,.2);border-radius:24px;padding:20px}
+canvas{width:100%;height:650px;background:#080604;border-radius:16px;display:block}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.sc,.suno{height:420px}}
 </style>
 </head>
 <body>
-<main>
-  <h1>Wake Up.<br>Stay Up.</h1>
-  <p>HiberNation now routes to the main MATTBEAR portal.</p>
-  <p>If the redirect does not happen automatically, use the button below.</p>
-  <a href="https://bearicide.github.io/">Go to bearicide.github.io</a>
-</main>
+<section class="hero">
+<div class="logo">.MATTBEAR.</div>
+<div class="sub">ALL FALL DOWN</div>
+<a class="btn" href="#portal">ENTER THE RUINS</a>
+</section>
+<div class="wrap" id="portal">
+<div class="grid">
+<div class="panel">
+<h2>SoundCloud Archive</h2>
+<iframe class="sc" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mattbear86/sets/allfalldown&color=%23d6b16a&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=false"></iframe>
+</div>
+<div class="panel">
+<h2>Suno Portal</h2>
+<iframe class="suno" src="https://suno.com/@mattbear86"></iframe>
+</div>
+</div>
+<div class="game">
+<h2>DESCENT</h2>
+<canvas id="game" width="1200" height="650"></canvas>
+</div>
+</div>
+<script>
+const c=document.getElementById('game');const x=c.getContext('2d');
+const p={x:600,y:320,s:16};const k={};let score=0;
+document.addEventListener('keydown',e=>k[e.key]=1);document.addEventListener('keyup',e=>k[e.key]=0);
+const shards=[];for(let i=0;i<25;i++)shards.push({x:Math.random()*1180+10,y:Math.random()*630+10,a:1});
+function loop(){x.fillStyle='#060504';x.fillRect(0,0,1200,650);
+for(let i=0;i<120;i++){x.fillStyle='rgba(255,255,255,.03)';x.fillRect(Math.random()*1200,Math.random()*650,2,2)}
+if(k['w']||k['ArrowUp'])p.y-=4;if(k['s']||k['ArrowDown'])p.y+=4;if(k['a']||k['ArrowLeft'])p.x-=4;if(k['d']||k['ArrowRight'])p.x+=4;
+shards.forEach(s=>{if(s.a){x.beginPath();x.arc(s.x,s.y,6,0,Math.PI*2);x.fillStyle='#d6b16a';x.fill();let dx=p.x-s.x,dy=p.y-s.y;if(Math.sqrt(dx*dx+dy*dy)<20){s.a=0;score++}}});
+x.beginPath();x.arc(p.x,p.y,p.s,0,Math.PI*2);x.fillStyle='#fff';x.fill();
+x.fillStyle='#d6b16a';x.font='22px Arial';x.fillText('SIGNAL SHARDS: '+score+'/25',20,40);
+if(score===25){x.font='52px Georgia';x.fillText('STILL HERE.',450,330)}
+requestAnimationFrame(loop)}loop();
+</script>
 </body>
 </html>
